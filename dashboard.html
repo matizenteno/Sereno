@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sereno · Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:     #FAF7F2;
+  --cream-2:   #F3EDE3;
+  --cream-3:   #EAE0D0;
+  --ink:       #1C1917;
+  --ink-60:    rgba(28,25,23,.60);
+  --ink-20:    rgba(28,25,23,.10);
+  --moss:      #3D5A47;
+  --moss-light:#EBF0EC;
+  --rust:      #B85C38;
+  --rust-light:#F5EAE4;
+  --gold:      #C9973A;
+  --gold-light:#FBF4E6;
+  --stone:     #C8B99A;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.serif { font-family: var(--serif); font-weight: 400; }
+.serif-italic { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+@keyframes recPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(184,92,56,.6); }
+  70%  { box-shadow: 0 0 0 12px rgba(184,92,56,0); }
+  100% { box-shadow: 0 0 0 0 rgba(184,92,56,0); }
+}
+
+.a1 { animation: fadeUp .7s cubic-bezier(.2,.8,.2,1) both; }
+.a2 { animation: fadeUp .7s cubic-bezier(.2,.8,.2,1) .08s both; }
+.a3 { animation: fadeUp .7s cubic-bezier(.2,.8,.2,1) .16s both; }
+.a4 { animation: fadeUp .7s cubic-bezier(.2,.8,.2,1) .24s both; }
+.a5 { animation: fadeUp .7s cubic-bezier(.2,.8,.2,1) .32s both; }
+
+/* NAV */
+.nav {
+  height: 60px; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,242,.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--ink-20);
+  position: sticky; top: 0; z-index: 50;
+}
+.logo { display:flex; align-items:center; gap:9px; }
+.logo-mark {
+  width:30px; height:30px; border-radius:8px; background:var(--moss);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-style:italic; color:#fff; font-size:16px;
+}
+.logo-name { font-family:var(--serif); font-size:18px; }
+.nav-tabs { display:flex; gap:2px; }
+.tab {
+  padding:7px 14px; border-radius:100px; font-size:13px;
+  color:var(--ink-60); cursor:pointer; transition:all .2s;
+}
+.tab:hover { color:var(--ink); background:var(--cream-2); }
+.tab.active { background:var(--ink); color:#fff; }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.avatar { width:32px; height:32px; border-radius:50%; background:var(--cream-3); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:500; }
+.sync { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-60); }
+.sync-dot { width:6px; height:6px; border-radius:50%; background:var(--moss); animation:pulse 2s infinite; }
+
+/* DEMO BANNER */
+.demo-bar {
+  background:var(--moss); color:#fff;
+  text-align:center; font-size:12px; padding:8px 16px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.demo-bar a { color:rgba(255,255,255,.7); text-decoration:underline; }
+.demo-bar a:hover { color:#fff; }
+
+/* MAIN */
+main { max-width: 1200px; margin: 0 auto; padding: 36px 32px 64px; }
+
+/* HEADER ROW */
+.page-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; }
+.page-eyebrow { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-60); margin-bottom:8px; }
+.page-title { font-family:var(--serif); font-size:clamp(32px,3vw,48px); line-height:1.1; }
+
+/* METRIC CARDS */
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+.metric-card {
+  background:#fff; border:1px solid var(--ink-20); border-radius:16px; padding:22px 20px;
+  transition: transform .2s, box-shadow .2s;
+}
+.metric-card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(28,25,23,.07); }
+.mc-label { font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-60); margin-bottom:12px; }
+.mc-value { font-family:var(--serif); font-size:clamp(32px,3vw,44px); line-height:1; margin-bottom:6px; }
+.mc-sub { font-size:12px; color:var(--ink-60); font-weight:300; }
+.mc-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:500; padding:3px 9px; border-radius:100px; }
+.badge-moss { background:var(--moss-light); color:var(--moss); }
+.badge-gold { background:var(--gold-light); color:var(--gold); }
+.badge-rust { background:var(--rust-light); color:var(--rust); }
+
+/* NEXT SESSION CARD */
+.next-card {
+  background:#fff; border:1.5px solid var(--ink); border-radius:20px;
+  padding:28px; margin-bottom:20px;
+  position:relative; overflow:hidden;
+}
+.next-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--moss), var(--gold));
+}
+.next-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:20px; }
+.next-eyebrow { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--moss); margin-bottom:6px; }
+.next-name { font-family:var(--serif); font-size:28px; line-height:1.1; margin-bottom:4px; }
+.next-meta { font-size:14px; color:var(--ink-60); font-weight:300; }
+.conf-badge { background:var(--moss-light); color:var(--moss); font-size:12px; font-weight:500; padding:7px 14px; border-radius:100px; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+.last-note { background:var(--cream-2); border-radius:12px; padding:16px; margin-bottom:20px; }
+.ln-label { font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-60); margin-bottom:8px; }
+.ln-body { font-size:14px; color:var(--ink-60); font-weight:300; line-height:1.65; }
+.next-actions { display:flex; gap:10px; flex-wrap:wrap; }
+
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 22px; border-radius:100px; font-family:var(--sans); font-size:13px; font-weight:500; border:none; cursor:pointer; transition:all .2s; }
+.btn:hover { transform:translateY(-1px); }
+.btn-primary { background:var(--ink); color:#fff; }
+.btn-primary:hover { background:#2d2a27; box-shadow:0 6px 20px rgba(28,25,23,.2); }
+.btn-secondary { background:transparent; color:var(--ink); border:1.5px solid var(--ink-20); }
+.btn-secondary:hover { border-color:var(--ink); background:var(--cream-2); }
+.rec-dot { width:10px; height:10px; border-radius:50%; background:var(--rust); flex-shrink:0; animation:recPulse 1.5s infinite; }
+
+/* GRID */
+.grid-2 { display:grid; grid-template-columns:1.5fr 1fr; gap:16px; margin-bottom:20px; }
+.grid-2b { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.card { background:#fff; border:1px solid var(--ink-20); border-radius:16px; padding:24px; }
+.card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.card-title { font-family:var(--serif); font-size:20px; }
+.card-action { font-size:12px; color:var(--ink-60); cursor:pointer; transition:color .2s; }
+.card-action:hover { color:var(--ink); }
+
+/* AGENDA */
+.agenda-item {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 0; border-bottom:1px solid var(--ink-20);
+}
+.agenda-item:last-child { border-bottom:none; }
+.ai-time { font-size:13px; color:var(--ink-60); width:40px; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.ai-time.now { color:var(--ink); font-weight:500; }
+.ai-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:500; color:#fff; flex-shrink:0; }
+.ai-body { flex:1; min-width:0; }
+.ai-name { font-size:14px; font-weight:500; margin-bottom:1px; }
+.ai-meta { font-size:12px; color:var(--ink-60); font-weight:300; }
+.ai-status { font-size:11px; font-weight:500; white-space:nowrap; }
+
+/* NOTES CARD */
+.note-preview { background:var(--cream-2); border-radius:10px; padding:14px; margin-bottom:14px; }
+.np-label { font-size:11px; color:var(--ink-60); margin-bottom:4px; }
+.np-patient { font-size:14px; font-weight:500; margin-bottom:2px; }
+.np-time { font-size:12px; color:var(--ink-60); font-weight:300; }
+
+/* COBROS */
+.cobros-num { font-family:var(--serif); font-size:36px; margin-bottom:4px; }
+.cobros-sub { font-size:13px; color:var(--moss); font-weight:500; margin-bottom:14px; }
+.bar-wrap { height:6px; background:var(--cream-2); border-radius:99px; overflow:hidden; margin-bottom:16px; }
+.bar-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--moss),#5a8068); }
+.cobros-mini { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.cm-item { background:var(--cream-2); border-radius:10px; padding:10px; text-align:center; }
+.cm-val { font-size:16px; font-weight:600; margin-bottom:2px; }
+.cm-label { font-size:10px; color:var(--ink-60); text-transform:uppercase; letter-spacing:.08em; }
+
+/* WHATSAPP */
+.wsp-item { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--ink-20); }
+.wsp-item:last-child { border-bottom:none; padding-bottom:0; }
+.wsp-icon { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:12px; }
+.wsp-icon.ok { background:var(--moss-light); color:var(--moss); }
+.wsp-icon.sent { background:var(--cream-2); color:var(--ink-60); }
+.wsp-icon.pay { background:var(--gold-light); color:var(--gold); }
+.wsp-text { font-size:13px; color:var(--ink-60); font-weight:300; line-height:1.4; }
+.wsp-time { font-size:11px; color:var(--ink-60); margin-top:2px; }
+
+/* MODAL */
+.overlay { position:fixed; inset:0; background:rgba(28,25,23,.45); backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; z-index:200; padding:20px; }
+.overlay.open { display:flex; }
+.modal { background:#fff; border-radius:24px; max-width:600px; width:100%; max-height:88vh; overflow-y:auto; padding:36px; box-shadow:0 32px 80px rgba(28,25,23,.18); }
+.modal-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; }
+.modal-close { width:32px; height:32px; border-radius:50%; background:var(--cream-2); border:none; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+.modal-close:hover { background:var(--cream-3); }
+.modal-section { margin-bottom:20px; }
+.modal-section-label { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-60); margin-bottom:8px; }
+.modal-section-body { font-size:15px; color:var(--ink-60); font-weight:300; line-height:1.7; background:var(--cream-2); border-radius:12px; padding:16px; }
+.modal-ai-box { background:var(--rust-light); border-radius:12px; padding:16px; margin-bottom:20px; }
+.modal-ai-label { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--rust); margin-bottom:8px; }
+.modal-ai-body { font-size:14px; color:var(--ink-60); font-weight:300; line-height:1.65; }
+.modal-actions { display:flex; gap:10px; padding-top:20px; border-top:1px solid var(--ink-20); flex-wrap:wrap; }
+
+.rec-modal-inner { text-align:center; padding:20px 0; }
+.rec-ring { width:64px; height:64px; border-radius:50%; background:var(--rust-light); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; }
+.rec-dot-big { width:24px; height:24px; border-radius:50%; background:var(--rust); animation:recPulse 1.5s infinite; }
+
+@media (max-width:900px) {
+  main { padding:24px 16px; }
+  .metrics { grid-template-columns:1fr 1fr; }
+  .grid-2 { grid-template-columns:1fr; }
+  .grid-2b { grid-template-columns:1fr; }
+  .nav-tabs { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span style="font-family:'DM Serif Display',serif; font-style:italic; color:rgba(255,255,255,.7);">Demo en vivo</span>
+  <span style="opacity:.4">·</span>
+  <span style="opacity:.7">Datos ficticios — <a href="index.html">volver al sitio</a></span>
+</div>
+
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-mark">S</div>
+    <span class="logo-name">Sereno</span>
+  </div>
+  <div class="nav-tabs">
+    <div class="tab active">Hoy</div>
+    <div class="tab">Pacientes</div>
+    <div class="tab">Agenda</div>
+    <div class="tab">Notas</div>
+    <div class="tab">Cobros</div>
+  </div>
+  <div class="nav-right">
+    <div class="sync"><span class="sync-dot"></span><span class="hide-sm">Sincronizado</span></div>
+    <span style="font-size:13px; color:var(--ink-60);">Dra. Carla Méndez</span>
+    <div class="avatar">CM</div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HEADER -->
+  <div class="page-header a1">
+    <div>
+      <p class="page-eyebrow">Lunes, 27 de abril · 2026</p>
+      <h1 class="page-title">Buenos días, <span class="serif-italic" style="color:var(--moss);">Carla.</span></h1>
+    </div>
+    <div class="conf-badge" style="display:flex; align-items:center;">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      3 sesiones hoy · todo confirmado
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics a2">
+    <div class="metric-card">
+      <div class="mc-label">Sesiones hoy</div>
+      <div class="mc-value">3</div>
+      <div><span class="mc-badge badge-moss">Todas confirmadas</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Cobrado en abril</div>
+      <div class="mc-value">$1.42M</div>
+      <div class="mc-sub">86% pagado</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Pacientes activos</div>
+      <div class="mc-value">12</div>
+      <div class="mc-sub">+2 este mes</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Asistencia</div>
+      <div class="mc-value">98<span style="font-size:24px; color:var(--stone);">%</span></div>
+      <div><span class="mc-badge badge-gold">Sobre promedio</span></div>
+    </div>
+  </div>
+
+  <!-- NEXT SESSION -->
+  <div class="next-card a3">
+    <div class="next-header">
+      <div>
+        <p class="next-eyebrow">→ Próxima sesión · 11:00</p>
+        <h2 class="next-name">Manuel S.</h2>
+        <p class="next-meta">Sesión 14 · Cognitivo-conductual · 50 min</p>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        <div class="conf-badge">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          Confirmado · WhatsApp
+        </div>
+        <span style="font-size:12px; color:var(--ink-60);">Confirmó ayer 19:04</span>
+      </div>
+    </div>
+    <div class="last-note">
+      <div class="ln-label">Nota de sesión anterior · 20 abr</div>
+      <div class="ln-body">Reestructuración cognitiva sobre creencia "no soy suficiente en el trabajo". Tarea: registro de pensamientos automáticos. Reportó mejora en calidad de sueño tras técnica 4-7-8.</div>
+    </div>
+    <div class="next-actions">
+      <button class="btn btn-primary" onclick="openModal('session-modal')">
+        <span class="rec-dot"></span>
+        Iniciar sesión con notas IA
+      </button>
+      <button class="btn btn-secondary">Ver historia clínica</button>
+      <button class="btn btn-secondary">Reagendar</button>
+    </div>
+  </div>
+
+  <!-- AGENDA + NOTAS IA -->
+  <div class="grid-2 a4">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Agenda de hoy</div>
+        <span class="card-action">Ver semana →</span>
+      </div>
+
+      <div class="agenda-item">
+        <div class="ai-time">09:00</div>
+        <div class="ai-avatar" style="background:#7A9B8A;">CR</div>
+        <div class="ai-body">
+          <div class="ai-name">Catalina R.</div>
+          <div class="ai-meta">Sesión 7 · borrador IA listo ✓</div>
+        </div>
+        <div class="ai-status" style="color:var(--moss);">Realizada</div>
+      </div>
+
+      <div class="agenda-item" style="background:var(--cream-2); margin:0 -24px; padding:14px 24px;">
+        <div class="ai-time now">11:00</div>
+        <div class="ai-avatar" style="background:var(--moss);">MS</div>
+        <div class="ai-body">
+          <div class="ai-name">Manuel S.</div>
+          <div class="ai-meta">Sesión 14 · TCC</div>
+        </div>
+        <div class="ai-status" style="color:var(--rust);">En 24 min</div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="ai-time">16:30</div>
+        <div class="ai-avatar" style="background:#C8B99A;">IT</div>
+        <div class="ai-body">
+          <div class="ai-name">Isabel T.</div>
+          <div class="ai-meta">Sesión 3 · primera vez con seguro</div>
+        </div>
+        <div class="ai-status" style="color:var(--gold);">Sin confirmar</div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="ai-time">18:00</div>
+        <div class="ai-avatar" style="background:#B85C38;">JV</div>
+        <div class="ai-body">
+          <div class="ai-name">Javier V.</div>
+          <div class="ai-meta">Sesión 22 · pareja</div>
+        </div>
+        <div class="ai-status" style="color:var(--moss);">Confirmada</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div class="card-title">Notas IA por revisar</div>
+        <span class="mc-badge badge-rust">2 borradores</span>
+      </div>
+
+      <div class="note-preview">
+        <div class="np-label">Último borrador</div>
+        <div class="np-patient">Catalina R. · Sesión 7</div>
+        <div class="np-time">Generado a las 09:52 · 47 min de sesión</div>
+      </div>
+
+      <p style="font-size:13px; color:var(--ink-60); font-weight:300; line-height:1.6; margin-bottom:16px; flex:1;">
+        La IA transcribe y genera un resumen estructurado según tu enfoque terapéutico. Tú revisás, editás si querés, y firmás. 3 minutos por sesión.
+      </p>
+
+      <button class="btn btn-primary" onclick="openModal('notes-modal')">Revisar borradores</button>
+    </div>
+
+  </div>
+
+  <!-- COBROS + WHATSAPP -->
+  <div class="grid-2b a5">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Cobros · abril</div>
+        <span class="mc-badge badge-moss">Pagos al día</span>
+      </div>
+      <div class="cobros-num">$1.420.000</div>
+      <div class="cobros-sub">↑ 86% pagado</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:86%"></div></div>
+      <div class="cobros-mini">
+        <div class="cm-item">
+          <div class="cm-val">18</div>
+          <div class="cm-label">Pagos recibidos</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-val">2</div>
+          <div class="cm-label">Pendientes</div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-val">$71k</div>
+          <div class="cm-label">Promedio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Actividad WhatsApp</div>
+        <span style="font-size:12px; color:var(--ink-60);">Hoy</span>
+      </div>
+
+      <div class="wsp-item">
+        <div class="wsp-icon ok">✓</div>
+        <div>
+          <div class="wsp-text">Manuel S. confirmó su sesión de las 11:00</div>
+          <div class="wsp-time">8:30 am</div>
+        </div>
+      </div>
+      <div class="wsp-item">
+        <div class="wsp-icon ok">✓</div>
+        <div>
+          <div class="wsp-text">Javier V. confirmó su sesión de las 18:00</div>
+          <div class="wsp-time">7:42 am</div>
+        </div>
+      </div>
+      <div class="wsp-item">
+        <div class="wsp-icon sent">→</div>
+        <div>
+          <div class="wsp-text">Recordatorio enviado a Isabel T.</div>
+          <div class="wsp-time">7:00 am</div>
+        </div>
+      </div>
+      <div class="wsp-item">
+        <div class="wsp-icon pay">$</div>
+        <div>
+          <div class="wsp-text">Catalina R. envió pago · $58.000</div>
+          <div class="wsp-time">10:04 am</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- MODAL: NOTAS IA -->
+<div class="overlay" id="notes-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p style="font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-60); margin-bottom:6px;">Borrador · Nota clínica IA</p>
+        <h3 class="serif" style="font-size:26px;">Catalina R. · Sesión 7</h3>
+        <p style="font-size:13px; color:var(--ink-60); font-weight:300; margin-top:4px;">Generada a las 09:52 · 47 min de transcripción</p>
+      </div>
+      <button class="modal-close" onclick="closeModal('notes-modal')">×</button>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Estado del paciente</div>
+      <div class="modal-section-body">Acude en buen ánimo. Reporta haber completado el registro de pensamientos automáticos. Refiere disminución de ansiedad anticipatoria respecto a presentaciones laborales (8/10 → 5/10).</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Trabajado en sesión</div>
+      <div class="modal-section-body">Reestructuración cognitiva sobre creencia central "tengo que ser perfecta para ser valorada". Identificamos sesgos: pensamiento todo-o-nada y filtro mental. Diálogo socrático para flexibilizar.</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Tarea para la próxima semana</div>
+      <div class="modal-section-body">Continuar registro de pensamientos, agregar columna "evidencia a favor / en contra". Practicar respiración 4-7-8 dos veces al día.</div>
+    </div>
+
+    <div class="modal-ai-box">
+      <div class="modal-ai-label">✦ Sugerencia clínica IA</div>
+      <div class="modal-ai-body">Dado el progreso reportado y la disposición de la paciente, considerar incorporar exposición gradual en sesiones próximas. Nivel de evidencia: moderado para ansiedad de presentación.</div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary">Firmar y guardar</button>
+      <button class="btn btn-secondary">Editar</button>
+      <button class="btn btn-secondary">Regenerar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SESIÓN -->
+<div class="overlay" id="session-modal">
+  <div class="modal">
+    <div class="modal-header" style="margin-bottom:8px;">
+      <div></div>
+      <button class="modal-close" onclick="closeModal('session-modal')">×</button>
+    </div>
+    <div class="rec-modal-inner">
+      <div class="rec-ring"><div class="rec-dot-big"></div></div>
+      <p style="font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-60); margin-bottom:8px;">Sesión en curso · Manuel S.</p>
+      <h3 class="serif" style="font-size:28px; margin-bottom:12px;">Grabando con consentimiento</h3>
+      <p style="font-size:14px; color:var(--ink-60); font-weight:300; line-height:1.65; max-width:400px; margin:0 auto 28px;">Sereno transcribe en tiempo real. Al cerrar la sesión genera el borrador en tu plantilla TCC.</p>
+      <div style="background:var(--cream-2); border-radius:12px; padding:16px; text-align:left; margin-bottom:28px;">
+        <p style="font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-60); margin-bottom:8px;">Transcripción en vivo</p>
+        <p style="font-size:14px; color:var(--ink-60); font-weight:300; font-style:italic; line-height:1.6;">"...esta semana noté que cuando me equivoqué en la reunión, en vez de quedarme rumiando como antes, recordé el ejercicio que vimos y pude redirigirme..."</p>
+      </div>
+      <div style="display:flex; gap:10px; justify-content:center;">
+        <button class="btn btn-secondary" onclick="closeModal('session-modal')">Pausar</button>
+        <button class="btn btn-primary" onclick="closeModal('session-modal')">Cerrar y generar nota</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(el => {
+  el.addEventListener('click', e => { if(e.target===el) el.classList.remove('open'); });
+});
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') document.querySelectorAll('.overlay.open').forEach(el=>el.classList.remove('open'));
+});
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

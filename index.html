@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sereno · El software que maneja tu consulta, para que disfrutes ser psicólogo.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- BLOB STAGE -->
+<div id="blob-stage" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-mark"><span>S</span></div>
+    <span class="nav-wordmark">Sereno</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">El producto</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#precio">Precio</a></li>
+    <li>
+      <a href="dashboard.html" class="nav-live">
+        <span class="live-pip"></span> Demo en vivo
+      </a>
+    </li>
+  </ul>
+  <a href="#waitlist" class="btn btn-moss" style="padding:10px 22px; font-size:13px;">Acceso anticipado</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="live-pip"></span>
+      Para psicólogos y terapeutas en LATAM
+    </div>
+    <h1 class="hero-h1">
+      El software que maneja tu consulta.<br>
+      <em>para que disfrutes ser psicólogo.</em>
+    </h1>
+    <p class="hero-sub">
+      Agenda con WhatsApp, notas clínicas con IA y gestión de cobros simple. Todo en español, todo en un solo lugar.
+    </p>
+    <div class="hero-cta">
+      <a href="#waitlist" class="btn btn-moss">
+        Quiero acceso anticipado
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="dashboard.html" class="btn btn-outline">Ver demo</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-avatars">
+        <span style="background:#3A5642">AM</span>
+        <span style="background:#7A9B8A">CR</span>
+        <span style="background:#B5583A">JV</span>
+        <span style="background:#C4923A">LP</span>
+        <span style="background:#5A7A6A">MG</span>
+      </div>
+      <p class="proof-text"><strong>38 terapeutas</strong> ya en lista de espera · Piloto abierto</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- WhatsApp chip -->
+    <div class="wsp-chip">
+      <div class="wsp-header">
+        <div class="wsp-dot">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.858L.057 23.448a.5.5 0 00.495.552h.005l5.746-1.505A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </div>
+        <span class="wsp-brand">WhatsApp</span>
+      </div>
+      <div class="wsp-msg">Hola Manuel 👋 Recuerda tu sesión mañana a las 11:00 con Dra. Méndez. ¿Confirmas?</div>
+      <div class="wsp-tick">✓✓ Confirmado · 19:04</div>
+    </div>
+
+    <!-- Main card -->
+    <div class="hero-card">
+      <div class="hc-top">
+        <div class="hc-heading">Agenda de hoy</div>
+        <div class="hc-badge">3 sesiones</div>
+      </div>
+
+      <div class="hc-session active">
+        <div class="hc-ava" style="background:var(--moss)">MS</div>
+        <div>
+          <div class="hc-name">Manuel S.</div>
+          <div class="hc-meta">Sesión 14 · TCC</div>
+          <div class="hc-time soon">→ En 24 minutos</div>
+        </div>
+      </div>
+      <div class="hc-session">
+        <div class="hc-ava" style="background:#7A9B8A">CR</div>
+        <div>
+          <div class="hc-name">Catalina R.</div>
+          <div class="hc-meta">Nota IA lista · sesión 7</div>
+          <div class="hc-time ok">✓ Completada</div>
+        </div>
+      </div>
+      <div class="hc-session">
+        <div class="hc-ava" style="background:var(--rust)">IT</div>
+        <div>
+          <div class="hc-name">Isabel T.</div>
+          <div class="hc-meta">Sesión 3 · 16:30</div>
+          <div class="hc-time" style="color:var(--gold)">⏳ Sin confirmar</div>
+        </div>
+      </div>
+
+      <div class="hc-sep"></div>
+      <div class="hc-stat">
+        <span class="hc-stat-l">Cobrado abril</span>
+        <span class="hc-stat-r">$1.42M · 86%</span>
+      </div>
+      <div class="hc-bar"><div class="hc-fill" style="width:86%;background:linear-gradient(90deg,var(--moss),#5a8068)"></div></div>
+      <div class="hc-stat" style="margin-top:10px">
+        <span class="hc-stat-l">Pagos recibidos</span>
+        <span class="hc-stat-r">18 / 20</span>
+      </div>
+      <div class="hc-bar"><div class="hc-fill" style="width:90%;background:linear-gradient(90deg,var(--gold),#d4a84a)"></div></div>
+    </div>
+
+    <!-- Floating chips -->
+    <div class="chip chip-1">
+      <div class="chip-icon">✦</div>
+      <div class="chip-label">Nota IA generada</div>
+      <div class="chip-value">3 min</div>
+      <div class="chip-sub" style="color:var(--moss)">Para firmar y archivar</div>
+    </div>
+    <div class="chip chip-2">
+      <div class="chip-icon">📊</div>
+      <div class="chip-label">Asistencia mes</div>
+      <div class="chip-value">98%</div>
+      <div class="chip-sub" style="color:var(--moss)">↑ 18% vs anterior</div>
+    </div>
+    <div class="chip chip-3">
+      <div class="chip-icon">🇨🇱</div>
+      <div class="chip-label">Pago recibido</div>
+      <div class="chip-value">$58.000</div>
+      <div class="chip-sub" style="color:var(--ink-50)">Catalina R. · automático</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar reveal">
+  <span class="proof-bar-label">Compatibles con</span>
+  <div class="proof-scroll-wrap">
+    <div class="proof-scroll" id="proof-scroll">
+      <span class="proof-logo">Webpay</span>
+      <span class="proof-logo">MercadoPago</span>
+      <span class="proof-logo">WhatsApp Business</span>
+      <span class="proof-logo">Google Calendar</span>
+      <span class="proof-logo proof-soon">FONASA <em>próximamente</em></span>
+      <span class="proof-logo">Apple Calendar</span>
+      <span class="proof-logo">Transbank</span>
+      <span class="proof-logo">Stripe</span>
+      <span class="proof-logo">Zoom</span>
+      <!-- duplicado para loop infinito -->
+      <span class="proof-logo">Webpay</span>
+      <span class="proof-logo">MercadoPago</span>
+      <span class="proof-logo">WhatsApp Business</span>
+      <span class="proof-logo">Google Calendar</span>
+      <span class="proof-logo proof-soon">FONASA <em>próximamente</em></span>
+      <span class="proof-logo">Apple Calendar</span>
+      <span class="proof-logo">Transbank</span>
+      <span class="proof-logo">Stripe</span>
+      <span class="proof-logo">Zoom</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item reveal">
+    <span class="stat-num"><span class="stat-counter" data-target="8">0</span>h</span>
+    <span class="stat-desc">de tiempo administrativo recuperado por semana</span>
+  </div>
+  <div class="stat-item reveal d2">
+    <span class="stat-num"><span class="stat-counter" data-target="3">0</span>'</span>
+    <span class="stat-desc">para firmar una nota clínica después de cada sesión</span>
+  </div>
+  <div class="stat-item reveal d4">
+    <span class="stat-num"><span class="stat-counter" data-target="98">0</span>%</span>
+    <span class="stat-desc">tasa de asistencia con recordatorios por WhatsApp</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <p class="label">Las herramientas</p>
+    <h2 class="serif">Calendly + Notion + WhatsApp + planilla<br><em class="serif-i" style="color:var(--moss)">no se reemplazan entre sí.</em></h2>
+    <p style="font-size:17px;color:var(--ink-80);font-weight:300;margin-top:16px;line-height:1.7">Sereno sí los reemplaza a todos, en un solo lugar, en español, con las integraciones locales que ningún SaaS gringo va a hacer.</p>
+  </div>
+
+  <div class="features-grid reveal-scale">
+    <div class="feature-card">
+      <div class="fc-num">01</div>
+      <div class="fc-icon" style="background:var(--moss-light)">✦</div>
+      <h3 class="fc-title">Notas clínicas<br>con IA</h3>
+      <p class="fc-body">Con consentimiento del paciente, Sereno transcribe la sesión y genera un borrador estructurado según tu enfoque terapéutico. Tú revisás, editás, firmás. 3 minutos por sesión.</p>
+      <div class="fc-tags">
+        <span class="tag tag-moss">TCC</span>
+        <span class="tag tag-moss">Sistémico</span>
+        <span class="tag tag-moss">Gestalt</span>
+        <span class="tag tag-moss">EMDR</span>
+        <span class="tag tag-plain">Psicoanalítico</span>
+        <span class="tag tag-plain">Humanista</span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="fc-num">02</div>
+      <div class="fc-icon" style="background:#E8F8EE">💬</div>
+      <h3 class="fc-title">Confirmaciones<br>por WhatsApp</h3>
+      <p class="fc-body">Recordatorios y confirmaciones donde el paciente realmente vive. No por email que nadie lee. Reduce los no-shows hasta un 80%.</p>
+      <div class="fc-bubble">
+        <div class="sender">Sereno · ayer 19:00</div>
+        Hola Manuel 👋 Recuerda tu sesión mañana a las 11:00 con la Dra. Méndez. ¿Confirmas?
+        <div class="tick">✓✓ Confirmado · 19:04</div>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="fc-num">03</div>
+      <div class="fc-icon" style="background:var(--gold-light)">🧾</div>
+      <h3 class="fc-title">Cobros y pagos<br>en un solo lugar</h3>
+      <p class="fc-body">Generás link de pago para tus pacientes en segundos. Webpay, MercadoPago, transferencia o efectivo — todo registrado automáticamente en la ficha del paciente. Conciliación a un click.</p>
+      <div class="fc-tags">
+        <span class="tag tag-gold">Webpay</span>
+        <span class="tag tag-gold">MercadoPago</span>
+        <span class="tag tag-gold">Transbank</span>
+        <span class="tag tag-plain">Transferencia</span>
+        <span class="tag tag-plain">Efectivo</span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="fc-num">04</div>
+      <div class="fc-icon" style="background:var(--rust-light)">🔒</div>
+      <h3 class="fc-title">Historia clínica<br>segura y completa</h3>
+      <p class="fc-body">Todas las notas, evolución del paciente y registros de sesión en un solo lugar. Encriptado, portable, tuyo. Cumple con la Ley 19.628 en Chile y equivalentes en LATAM.</p>
+      <div class="fc-tags">
+        <span class="tag tag-rust">Ley 19.628</span>
+        <span class="tag tag-rust">LOPD</span>
+        <span class="tag tag-plain">Encriptado</span>
+        <span class="tag tag-plain">Exportable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP / PRÓXIMAMENTE -->
+<section class="roadmap" id="roadmap">
+  <div class="roadmap-inner">
+    <div class="roadmap-header reveal">
+      <p class="label">Roadmap</p>
+      <h2 class="serif">Lo que viene<br><em class="serif-i" style="color:var(--moss)">en los próximos meses.</em></h2>
+      <p style="font-size:17px;color:var(--ink-80);font-weight:300;margin-top:16px;line-height:1.7;max-width:540px">
+        Construimos Sereno escuchando a los terapeutas del piloto. Esto es lo que ya está confirmado para las próximas versiones — sin promesas vacías, solo lo que sabemos que vamos a entregar.
+      </p>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card highlight reveal d1">
+        <div class="rc-tag rc-tag-soon">Próximo trimestre</div>
+        <div class="rc-icon">🇨🇱</div>
+        <h3 class="rc-title">Bono electrónico FONASA</h3>
+        <p class="rc-body">Tus pacientes podrán emitir su bono FONASA dentro de Sereno al momento de pagar la sesión. Integración con Imed (operador certificado por el Ministerio de Salud), validación automática del copago, y registro directo en la ficha del paciente.</p>
+        <p class="rc-note">Requiere que el psicólogo esté inscrito en MLE de FONASA y tenga su CVP. Te ayudamos con el proceso.</p>
+      </div>
+
+      <div class="roadmap-card reveal d2">
+        <div class="rc-tag">En 6 meses</div>
+        <div class="rc-icon">📋</div>
+        <h3 class="rc-title">Boleta electrónica al SII</h3>
+        <p class="rc-body">Emisión automática de boleta de honorarios al SII cuando cobrás. Sin entrar al portal, sin planillas, sin errores.</p>
+      </div>
+
+      <div class="roadmap-card reveal d3">
+        <div class="rc-tag">En 9 meses</div>
+        <div class="rc-icon">🩺</div>
+        <h3 class="rc-title">Convenios con Isapres</h3>
+        <p class="rc-body">Bono electrónico para Banmédica, Colmena, Cruz Blanca y Vida Tres. Mismo flujo que FONASA, validación en línea del aporte.</p>
+      </div>
+
+      <div class="roadmap-card reveal d4">
+        <div class="rc-tag">Explorando</div>
+        <div class="rc-icon">📊</div>
+        <h3 class="rc-title">Reportes y analítica clínica</h3>
+        <p class="rc-body">Tendencias de evolución del paciente, métricas de adherencia, reportes para supervisión clínica y peritajes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como">
+  <div class="how-inner">
+    <div class="how-sticky reveal-left">
+      <p class="label">Cómo funciona</p>
+      <h2 class="serif how-h2">Empezás en<br><em class="serif-i" style="color:var(--moss)">10 minutos.</em></h2>
+      <p class="how-sub">Sin migración de datos, sin capacitación, sin IT. Si usás Google Calendar y WhatsApp hoy, ya sabés usar Sereno.</p>
+    </div>
+
+    <div class="steps reveal-right">
+      <div class="step">
+        <div class="step-num-wrap">
+          <div class="step-num">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div>
+          <h3 class="step-title">Importás tus pacientes</h3>
+          <p class="step-body">Subís una planilla Excel o conectás Google Calendar. Listo en 10 minutos. No perdés nada de lo que ya tenés.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap">
+          <div class="step-num">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div>
+          <h3 class="step-title">Conectás WhatsApp y pagos</h3>
+          <p class="step-body">Un botón para WhatsApp Business y otro para tu cuenta de Webpay o MercadoPago. Listo en menos de 5 minutos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap">
+          <div class="step-num">3</div>
+        </div>
+        <div>
+          <h3 class="step-title">Empezás tu próxima sesión</h3>
+          <p class="step-body">Sereno graba con consentimiento, transcribe, y al terminar tenés el borrador de nota listo para revisar y firmar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi" id="testimonios">
+  <div class="testi-header reveal">
+    <p class="label">Testimonios</p>
+    <h2 class="serif">Lo que dicen los terapeutas<br><em class="serif-i" style="color:var(--moss)">del piloto.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal d1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-body">Antes me tomaba 30 minutos escribir la nota de cada sesión. Ahora reviso el borrador de Sereno en 3 minutos y firmo. Recuperé casi una hora al día.</p>
+      <div class="testi-author">
+        <div class="testi-ava" style="background:var(--moss)">AM</div>
+        <div>
+          <div class="testi-name">Dra. Ana M.</div>
+          <div class="testi-role">Psicóloga clínica · Santiago</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-body">Antes perdía horas persiguiendo pagos atrasados por WhatsApp. Ahora Sereno me muestra quién pagó y quién no en una pantalla, y manda los recordatorios sola.</p>
+      <div class="testi-author">
+        <div class="testi-ava" style="background:var(--rust)">CR</div>
+        <div>
+          <div class="testi-name">Ps. Carolina R.</div>
+          <div class="testi-role">Terapeuta sistémica · Valparaíso</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d3">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-body">Mis pacientes confirman por WhatsApp y los no-shows bajaron de 3-4 por semana a prácticamente cero. Solo eso ya justifica el precio.</p>
+      <div class="testi-author">
+        <div class="testi-ava" style="background:var(--gold)">JV</div>
+        <div>
+          <div class="testi-name">Ps. Javier V.</div>
+          <div class="testi-role">Psicólogo cognitivo · Buenos Aires</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare" id="comparativa">
+  <div class="compare-header reveal">
+    <p class="label">Comparativa</p>
+    <h2 class="serif">Sereno vs. las alternativas</h2>
+  </div>
+  <div class="compare-table reveal-scale">
+    <div class="ct-head">
+      <div>Funcionalidad</div>
+      <div class="ct-sereno">Sereno</div>
+      <div>SimplePractice</div>
+      <div>Agenda + Planilla</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Idioma español nativo</div>
+      <div class="ct-val check">✓</div>
+      <div class="ct-val cross">✗</div>
+      <div class="ct-val check">✓</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Seguimiento de pagos automático</div>
+      <div class="ct-val check">✓</div>
+      <div class="ct-val partial">Parcial</div>
+      <div class="ct-val cross">✗</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Confirmaciones WhatsApp</div>
+      <div class="ct-val check">✓</div>
+      <div class="ct-val cross">✗</div>
+      <div class="ct-val cross">✗</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Notas clínicas con IA</div>
+      <div class="ct-val check">✓</div>
+      <div class="ct-val partial">Parcial</div>
+      <div class="ct-val cross">✗</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Precio mensual</div>
+      <div class="ct-val check" style="color:var(--moss);font-size:13px">$29 USD</div>
+      <div class="ct-val" style="font-size:13px;color:var(--ink-50)">$69–99 USD</div>
+      <div class="ct-val" style="font-size:13px;color:var(--ink-50)">Gratis (tu tiempo)</div>
+    </div>
+    <div class="ct-row">
+      <div class="ct-feature">Integración MercadoPago</div>
+      <div class="ct-val check">✓</div>
+      <div class="ct-val cross">✗</div>
+      <div class="ct-val cross">✗</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precio">
+  <div class="pricing-header reveal">
+    <p class="label">Precio</p>
+    <h2 class="serif">Sin letra chica.<br><em class="serif-i" style="color:var(--moss)">Sin sorpresas.</em></h2>
+    <div class="pricing-toggle">
+      <div class="pt-option active" id="toggle-monthly" onclick="setToggle('monthly')">Mensual</div>
+      <div class="pt-option" id="toggle-annual" onclick="setToggle('annual')">
+        Anual <span class="pt-save">−20%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-grid reveal-scale">
+    <div class="price-card">
+      <div class="pc-plan">Práctica individual</div>
+      <div class="pc-price" id="price-ind">$29</div>
+      <div class="pc-period">USD por mes · facturado <span id="period-ind">mensual</span></div>
+      <ul class="pc-features">
+        <li><span class="tick">✓</span> Hasta 60 sesiones por mes</li>
+        <li><span class="tick">✓</span> Notas clínicas con IA ilimitadas</li>
+        <li><span class="tick">✓</span> Recordatorios WhatsApp automáticos</li>
+        <li><span class="tick">✓</span> Cobros con Webpay y MercadoPago</li>
+        <li><span class="tick">✓</span> Historia clínica completa</li>
+        <li><span class="tick">✓</span> Soporte por email</li>
+      </ul>
+      <a href="#waitlist" class="btn btn-outline" style="width:100%;justify-content:center;padding:14px">Sumarme al piloto</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="pc-badge">Más popular</div>
+      <div class="pc-plan">Centro pequeño</div>
+      <div class="pc-price" id="price-cen">$89</div>
+      <div class="pc-period">USD por mes · hasta 5 terapeutas · <span id="period-cen">mensual</span></div>
+      <ul class="pc-features">
+        <li><span class="tick">✓</span> Hasta 5 terapeutas</li>
+        <li><span class="tick">✓</span> Sesiones ilimitadas</li>
+        <li><span class="tick">✓</span> Dashboard del centro</li>
+        <li><span class="tick">✓</span> Reportes mensuales</li>
+        <li><span class="tick">✓</span> Todo del plan individual</li>
+        <li><span class="tick">✓</span> Soporte prioritario WhatsApp</li>
+      </ul>
+      <a href="#waitlist" class="btn btn-gold" style="width:100%;justify-content:center;padding:14px">Sumarme al piloto</a>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:14px;color:var(--ink-50);margin-top:28px;font-weight:300">
+    Los primeros <strong style="color:var(--ink);font-weight:500">50 terapeutas</strong> del piloto reciben <strong style="color:var(--ink);font-weight:500">6 meses gratis</strong> a cambio de feedback honesto.
+  </p>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <p class="label">Preguntas frecuentes</p>
+      <h2 class="serif">Lo que te estás<br><em class="serif-i" style="color:var(--moss)">preguntando.</em></h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿Cuándo van a estar los bonos FONASA?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">Estamos trabajando con Imed (operador certificado por el Ministerio de Salud) para integrar la emisión de bonos electrónicos FONASA dentro de Sereno. La fecha estimada es el próximo trimestre. Para emitir bonos vas a necesitar estar inscrito en la Modalidad de Libre Elección de FONASA y contar con tu Código de Venta Prestador (CVP) — si todavía no los tenés, te guiamos paso a paso en el proceso de inscripción.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿Es seguro guardar las notas clínicas de mis pacientes en Sereno?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">Sí. Toda la información está encriptada en reposo y en tránsito. Cumplimos con la Ley 19.628 de datos personales en Chile y sus equivalentes en Argentina y México. Tus datos son tuyo y podés exportarlos en cualquier momento. Nunca los vendemos ni compartimos.</div>
+    </div>
+
+    <div class="faq-item reveal d1">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿La IA graba las sesiones sin que el paciente sepa?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">No. La grabación solo se activa cuando vos iniciás la sesión en Sereno y el paciente ha firmado el consentimiento informado digital. Si el paciente no consiente, la funcionalidad de IA no está disponible y podés escribir la nota manualmente como siempre.</div>
+    </div>
+
+    <div class="faq-item reveal d2">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿Funciona para Argentina, México y otros países además de Chile?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">Sí. Sereno funciona en cualquier país de habla hispana. Los métodos de cobro disponibles dependen del país: en Chile soportamos Webpay, en Argentina y México MercadoPago, y transferencia bancaria en todos lados. Estamos agregando más opciones según la demanda del piloto.</div>
+    </div>
+
+    <div class="faq-item reveal d3">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿Qué pasa con mis datos si decido cancelar?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">Podés exportar toda tu historia clínica y datos de pacientes en formato PDF o Excel en cualquier momento, incluso después de cancelar. Tenés 90 días para descargarlos después de cancelar tu suscripción. No hay lock-in.</div>
+    </div>
+
+    <div class="faq-item reveal d4">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>¿Necesito saber de tecnología para usar Sereno?</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a">No. Si sabés usar WhatsApp y Google Calendar, sabés usar Sereno. La configuración inicial toma menos de 10 minutos y te acompañamos paso a paso por videollamada si lo necesitás. El soporte es en español, claro y sin tecnicismos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="waitlist-inner reveal-scale">
+    <p class="label label-moss">Acceso anticipado</p>
+    <h2 class="serif wl-h2">
+      50 terapeutas <em class="serif-i">fundadores.</em>
+    </h2>
+    <p class="wl-sub">
+      Quienes entren construyen Sereno con nosotros. 6 meses gratis. Precio de fundador fijo para siempre. Acceso prioritario a cada nueva funcionalidad.
+    </p>
+
+    <form class="wl-form" id="wl-form">
+      <div class="wl-row">
+        <div class="wl-field">
+          <label>Nombre completo</label>
+          <input type="text" name="nombre" placeholder="Dra. Ana Martínez" required>
+        </div>
+        <div class="wl-field">
+          <label>Email profesional</label>
+          <input type="email" name="email" placeholder="ana@consulta.cl" required>
+        </div>
+      </div>
+      <div class="wl-row">
+        <div class="wl-field">
+          <label>Ciudad / País</label>
+          <select name="ciudad" required>
+            <option value="">Selecciona</option>
+            <option>Santiago, Chile</option>
+            <option>Buenos Aires, Argentina</option>
+            <option>Ciudad de México</option>
+            <option>Bogotá, Colombia</option>
+            <option>Lima, Perú</option>
+            <option>Montevideo, Uruguay</option>
+            <option>Otra ciudad de LATAM</option>
+          </select>
+        </div>
+        <div class="wl-field">
+          <label>Pacientes activos</label>
+          <select name="pacientes" required>
+            <option value="">Selecciona</option>
+            <option>Menos de 10</option>
+            <option>10 a 25</option>
+            <option>25 a 50</option>
+            <option>Más de 50</option>
+            <option>Trabajo en un centro</option>
+          </select>
+        </div>
+      </div>
+      <div class="wl-field" style="margin-bottom:14px">
+        <label>¿Qué es lo que más tiempo te quita hoy? (opcional)</label>
+        <textarea name="dolor" placeholder="Ej: escribir las notas, perseguir pagos, los no-shows…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-moss wl-submit">
+        Sumarme al piloto gratuito
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="wl-privacy">Solo te escribiremos para coordinar el acceso al piloto. Sin spam.</p>
+    </form>
+
+    <div class="wl-success" id="wl-success">
+      <div class="wl-check">🌿</div>
+      <h3>Estás dentro.</h3>
+      <p>Te escribimos en menos de 48 horas. Ya sois <strong id="wl-count">0</strong> terapeutas en la lista.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-mark"><span>S</span></div>
+    <span class="nav-wordmark">Sereno</span>
+  </div>
+  <p class="footer-copy">Hecho con cuidado en Santiago · © 2026</p>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="mailto:hola@sereno.app">hola@sereno.app</a>
+  </div>
+</footer>
+
+<!-- ════ SCRIPTS ════ -->
+<script src="script.js"></script>
+</body>
+</html>
